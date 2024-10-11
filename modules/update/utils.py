@@ -6,7 +6,7 @@ import sys
 
 import httpx
 
-from event import Event
+from Interfece.Liza.event import Event
 
 logger = logging.getLogger(__name__)
 

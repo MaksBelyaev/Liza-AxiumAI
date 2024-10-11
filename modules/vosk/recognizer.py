@@ -8,7 +8,7 @@ import soundfile
 import vosk
 import pyaudio
 import logging
-from event import EventTypes, Event
+from Interfece.Liza.event import EventTypes, Event
 
 logger = logging.getLogger("root")
 

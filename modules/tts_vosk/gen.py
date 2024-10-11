@@ -4,7 +4,7 @@ import os.path
 import sounddevice
 from vosk_tts import Model, Synth
 
-from event import Event
+from Interfece.Liza.event import Event
 
 model: Model = None
 synth: Synth = None

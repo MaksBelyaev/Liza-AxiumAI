@@ -5,7 +5,7 @@ from typing import List
 import httpx
 import logging
 
-from event import Event
+from Interfece.Liza.event import Event
 
 
 logger = logging.getLogger(__name__)

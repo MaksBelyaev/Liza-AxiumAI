@@ -2,7 +2,7 @@ import json
 
 from num2words import num2words
 
-from event import Event, EventTypes
+from Interfece.Liza.event import Event, EventTypes
 
 
 def num_to_word(event: Event):

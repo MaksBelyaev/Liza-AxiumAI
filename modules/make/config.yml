@@ -1,0 +1,4 @@
+ver: "1.0"
+intent_examples:
+  open_youtube: ["открой ютуб", "открой youtube","YouTube","запусти ютуб"]
+  google: ["открой google","открой гугл"]
