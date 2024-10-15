@@ -1,10 +1,8 @@
 {
   "version": "0.1",
-  "is_active": false,
+  "is_active": true,
   "require_modules": [],
   "config": {
-    "model_dir_path": "modules/vosk/model",
-    "input_device_id": -1,
     "send_text_event": false,
     "ext_only": false,
     "trigger_name": "джарвис|джарвиз"
