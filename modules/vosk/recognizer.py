@@ -78,47 +78,78 @@ async def run_vosk(
                      frames_per_buffer=8000)
 
     names = []
-    if trigger_name:
-        names = [i for i in trigger_name.split("|")]
+    if trigger_name == "true":
+        logger.info("Запуск распознователя речи vosk вход в цикл")
 
-    logger.info("Запуск распознователя речи vosk вход в цикл")
+        while True:
+            await asyncio.sleep(0)
 
-    while True:
-        await asyncio.sleep(0)
+            data = stream.read(8000)
+            if rec.AcceptWaveform(data):
+                recognized_data = rec.Result()
+                recognized_data = json.loads(recognized_data)
+                voice_input_str: str = recognized_data["text"]
+                if voice_input_str != "" and voice_input_str is not None:
+                    logger.info(f"Распознано Vosk: '{voice_input_str}'")
 
-        data = stream.read(8000)
-        if rec.AcceptWaveform(data):
-            recognized_data = rec.Result()
-            recognized_data = json.loads(recognized_data)
-            voice_input_str: str = recognized_data["text"]
-            if voice_input_str != "" and voice_input_str is not None:
-                logger.info(f"Распознано Vosk: '{voice_input_str}'")
-                if len(names):
-                    for name in names:
-                        if name not in voice_input_str:
-                            continue
-
-                        logger.debug("Имя обнаружено!")
-                        voice_input_str = " ".join(voice_input_str.split(name)[1:])
-                        voice_input_str = voice_input_str.strip()
-                        break
-
-                    else:
-                        logger.debug("Имя не найдено!")
-                        continue
-
-                await queue.put(
-                    Event(
-                        event_type=EventTypes.user_command,
-                        value=voice_input_str
-                    )
-                )
-                if send_text_event:
                     await queue.put(
                         Event(
-                            event_type=EventTypes.text,
+                            event_type=EventTypes.user_command,
                             value=voice_input_str
                         )
                     )
+                    if send_text_event:
+                        await queue.put(
+                            Event(
+                                event_type=EventTypes.text,
+                                value=voice_input_str
+                            )
+                        )
 
-                logger.info(f"Vosk - передано в очередь: '{voice_input_str}'")
+                    logger.info(f"Vosk - передано в очередь: '{voice_input_str}'")
+
+    elif trigger_name:
+        names = [i for i in trigger_name.split("|")]
+
+
+        logger.info("Запуск распознователя речи vosk вход в цикл")
+
+        while True:
+            await asyncio.sleep(0)
+
+            data = stream.read(8000)
+            if rec.AcceptWaveform(data):
+                recognized_data = rec.Result()
+                recognized_data = json.loads(recognized_data)
+                voice_input_str: str = recognized_data["text"]
+                if voice_input_str != "" and voice_input_str is not None:
+                    logger.info(f"Распознано Vosk: '{voice_input_str}'")
+                    if len(names):
+                        for name in names:
+                            if name not in voice_input_str:
+                                continue
+
+                            logger.debug("Имя обнаружено!")
+                            voice_input_str = " ".join(voice_input_str.split(name)[1:])
+                            voice_input_str = voice_input_str.strip()
+                            break
+
+                        else:
+                            logger.debug("Имя не найдено!")
+                            continue
+
+                    await queue.put(
+                        Event(
+                            event_type=EventTypes.user_command,
+                            value=voice_input_str
+                        )
+                    )
+                    if send_text_event:
+                        await queue.put(
+                            Event(
+                                event_type=EventTypes.text,
+                                value=voice_input_str
+                            )
+                        )
+
+                    logger.info(f"Vosk - передано в очередь: '{voice_input_str}'")

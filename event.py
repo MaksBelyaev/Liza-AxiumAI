@@ -8,6 +8,7 @@ class EventTypes:
     user_command = "user_command"
 
 
+
 class Event:
     def __init__(self, event_type: str, value=None, purpose=None, out_queue: asyncio.Queue = None, from_module: str = None, **kwargs):
         self.event_type = event_type

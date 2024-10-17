@@ -1,5 +1,9 @@
 ver: "1.0"
 intent_examples:
+  google_search: [ "за гугли", "загугли", "найди в гугл", "найди в google", "найди в google" ]
+  youtube_search: [ "найди видео", "покажи видео", "включи видео" ]
+  wikipedia_search: [ "найди определение слова", "найди на википедии", "что означает" ]
+  person_search: [ "найди человека" ]
   open_youtube: ["открой ютуб", "открой youtube","YouTube","запусти ютуб"]
   google: ["открой google", "открой гугл"]
   telegram: ["телеграмм", "телеграм", "тг", "открой telegram", "открой телеграмм", "telegram", "Telegram"]

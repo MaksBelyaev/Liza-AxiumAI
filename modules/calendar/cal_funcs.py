@@ -5,7 +5,7 @@ from datetime import datetime
 import logging
 import caldav
 
-from event import Event
+from Interfece.Liza.event import Event
 
 logger = logging.getLogger(__name__)
 

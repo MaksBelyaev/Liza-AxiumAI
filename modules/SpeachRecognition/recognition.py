@@ -1,5 +1,4 @@
 import asyncio
-import json
 import logging
 
 import speech_recognition as sr
@@ -14,17 +13,6 @@ async def recognize(event: Event):
     return event
 
 
-# file_path = 'commands.txt'
-#
-#
-# def save_to_file(file_path, text):
-#     with open(file_path, 'a', encoding='utf-8') as file:
-#         file.write(text + '\n')
-#
-#
-# def clear_file():
-#     with open(file_path, 'w', encoding='utf-8') as file:
-#         file.write('')
 async def voice_listening(
         queue: asyncio.Queue = None,
         config: dict = None,
@@ -40,7 +28,7 @@ async def voice_listening(
     if trigger_name:
         names = [i for i in trigger_name.split("|")]
 
-    logger.info("Запуск распознователя речи Speach Recognition вход в цикл")
+    logger.info("Запуск распознователя речи SpeachRecognition вход в цикл")
 
     r = sr.Recognizer()
     while True:
@@ -81,5 +69,4 @@ async def voice_listening(
                         )
 
                     logger.info(f"SpeachRecognition - передано в очередь: '{user_command}'")
-
 

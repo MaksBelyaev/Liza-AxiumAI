@@ -1,9 +1,26 @@
 from .utils import (open_url, keyboard_shortcut,
-                    video_on_youtube, person_search,
-                    definition_on_wikipedia, search_for_term_on_google)
+                    video_on_youtube, search_for_term_on_google,
+                    definition_on_wikipedia, person_search)
+
 
 #
 intents = [
+    {
+        "name": "youtube_search",
+        "function": video_on_youtube,
+    },
+    {
+        "name": "google_search",
+        "function": search_for_term_on_google,
+    },
+    {
+        "name": "wikipedia_search",
+        "function": definition_on_wikipedia,
+    },
+    {
+        "name": "person_search",
+        "function": person_search,
+    },
 
     {
         "name": "open_youtube",
